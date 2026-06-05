@@ -1,0 +1,4 @@
+naruto_signs/
+.env
+__pycache__/
+*.pyc
