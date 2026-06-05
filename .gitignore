@@ -1,1 +1,4 @@
-naruto-signs/data
+naruto_signs/data/
+.env
+__pycache__/
+*.pyc
