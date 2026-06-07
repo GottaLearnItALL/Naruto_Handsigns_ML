@@ -2,6 +2,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV, train_test_split
 import numpy as np
 import joblib
+from sklearn.metrics import confusion_matrix, classification_report
 
 param_grid = {
     'C': [0.1,1,10,100],
@@ -26,8 +27,10 @@ print(f"Best params: {grid.best_params_}")
 print(f"Best CV accuracy: {grid.best_score_*100:.1f}%")
 
 best_svm = grid.best_estimator_
-accuracy = np.sum(best_svm.predict(X_test) == y_test) /len(y_test)
+predictions = best_svm.predict(X_test)
+accuracy = np.sum(predictions == y_test) /len(y_test)
 print(f"Test accuracy: {accuracy*100:.1f}%")
 
+print(classification_report(y_test, predictions))
 
-joblib.dump(best_svm, "naruto_signs/models/svm_model.pk1")
+joblib.dump(best_svm, "naruto_signs/models/svm_model.pkl")
